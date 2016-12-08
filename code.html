@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>	
+<head>
+<title>Levy Flat Registration Form Flat Responsive Widget Template  : w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/api_conf.js"></script>
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<!--webfonts-->
+<link href='css/css.css' rel='stylesheet' type='text/css'>
+<link href='css/css1.css' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+</head>
+<body>
+		<div class="registration">
+			<h2>Verify Code</h2>				
+					<form id="registration_form">
+						<div class="form-info">
+						<input type="text" id="auth_code" name="auth_code" class="text" value="Authorization Code" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Authorization Code';}" >
+					    </div>
+					    <input type="button" value="VERIFY" id="enter_code">
+						 <input type="button" value="REGISTER" id="reg_btn">
+					</form>
+		</div>
+
+
+
+<script>
+$(function() {
+	var code = localStorage.getItem("code");
+	if (code != null && code != '' && code != 'undefined')
+	{
+		window.location.href = 'slider.html';
+	}
+	$("#reg_btn").click(function(){
+		window.location.href="index.html";
+	});
+	$("#enter_code").click(function(){
+		if($("#auth_code").val()=="" || $("#auth_code").val()=="Authorization Code"){alert("Please enter Authorization Code");$("#auth_code").focus();return false;}
+		$.ajax({
+			type: "POST",
+			//url: 'app/index.php/user/verify_code',
+			url: api_url+'app/index.php/user/verify_code',
+			datatype: "json",
+			data: {'code':$("#auth_code").val()},
+			crossDomain: true,
+			success: function(result) {
+				var obj = $.parseJSON(result);
+				console.log(obj);
+				if(obj.success)
+				{
+					localStorage.setItem("code",$("#auth_code").val());
+					window.location.href = 'slider.html';
+				}
+				else
+				{
+					alert(obj.error);
+				}
+			},
+			error: function(result) {
+				console.log("Some Error Occured");
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>
