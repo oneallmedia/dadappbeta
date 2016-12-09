@@ -48,11 +48,11 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'user_adpact';
-$db['default']['password'] = 'p@ssw0rd';
-$db['default']['database'] = 'db_adpact';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['hostname'] = 'ec2-54-247-119-246.eu-west-1.compute.amazonaws.com';
+$db['default']['username'] = 'tnbggmbcdmzbwx';
+$db['default']['password'] = 'w0sPjuHpVcPRgx7HFtLHTxjHpC';
+$db['default']['database'] = 'd867mn1642peq9';
+$db['default']['dbdriver'] = 'postgre';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
